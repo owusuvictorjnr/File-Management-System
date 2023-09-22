@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 const Register = () => {
@@ -14,12 +15,53 @@ const Register = () => {
 
   const [error, setError] = useState('')
 
-  const handleSubmit = (e) => {
+  const router = useRouter()
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (!fname || lname || email || password) {
+    if (!fname || !lname || !email || !password) {
       setError('All fields are required')
       return
+    }
+
+    try {
+      const resUserExists = await fetch('api/userExists', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      })
+
+      const { user } = await resUserExists.json()
+      if (user) {
+        setError('User already exists')
+        return
+      }
+
+      const res = await fetch('api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fname,
+          lname,
+          email,
+          password,
+        }),
+      })
+
+      if (res.ok) {
+        const form = e.target
+        form.reset()
+        router.push('/')
+      } else {
+        console.log('user registration failed')
+      }
+    } catch (error) {
+      console.log('Error during registration', error)
     }
   }
 
