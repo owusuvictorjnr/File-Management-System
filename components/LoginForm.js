@@ -1,7 +1,11 @@
+'use client'
+
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 
 const LoginForm = () => {
+  const [error, setError] = useState('')
+
   return (
     <div className="grid place-items-center h-screen">
       <div className="shadow-lg p-5 rounded-lg border-t-4 border-green-400">
@@ -16,12 +20,15 @@ const LoginForm = () => {
             login
           </button>
 
-          <div className="bg-red-500 capitalize text-white w-fit text-sm py-1 px-3 rounded-md">
-            error message
-          </div>
+          {error && (
+            <div className="bg-red-500 capitalize text-white w-fit text-sm py-1 px-3 rounded-md">
+              {error}
+            </div>
+          )}
 
           <Link href={'/register'} className="text-sm mt-3 text-right">
-            Don`t have an account? <span className="underline capitalize">sign up</span>
+            Don`t have an account?{' '}
+            <span className="underline capitalize">sign up</span>
           </Link>
         </form>
       </div>
