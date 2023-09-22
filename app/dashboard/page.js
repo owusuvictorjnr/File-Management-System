@@ -1,8 +1,8 @@
+import FileUpload from '@/components/FileUpload'
 import React from 'react'
-import UserInfo from '../components/UserInfo'
 
 const Dashboard = () => {
-  return <UserInfo />
+  return <FileUpload />
 }
 
 export default Dashboard
