@@ -2,14 +2,37 @@
 
 import React from 'react'
 import SideBarNav from './SideBarNav'
+import SearchBar from './SearchBar'
+import FolderList from './Folder/FolderList'
+import FileItem from './File/FileItem'
+import FileList from './File/FileList'
+import CreateFolderModal from './Folder/CreateFolderModal'
 // import { signOut } from 'next-auth/react'
 // import { useSession } from 'next-auth/react'
 
 const FileUpload = () => {
   return (
     <main className="bg-blue-200/40">
-      <SideBarNav />
-      <div className="">home</div>
+      <div className="flex">
+        <SideBarNav />
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 w-full">
+          <div className="col-span-3">
+            <div className="p-5 ">
+              <SearchBar />
+            </div>
+            <div className="">
+              <FolderList />
+              <FileList />
+            </div>
+          </div>
+          <div className="bg-white p-5 mx-5 mt-5 h-full lg:w-[25rem] md:w-[45rem] ">
+            storage
+          </div>
+        </div>
+        {/* <div className="">
+        <CreateFolderModal />
+      </div> */}
+      </div>
     </main>
   )
 }
