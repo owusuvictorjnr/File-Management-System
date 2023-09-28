@@ -12,28 +12,23 @@ function FileItem({ file }) {
   }
 
   return (
-    <div
-      className="grid grid-cols-1
-      md:grid-cols-2 justify-between
-      cursor-pointer hover:bg-gray-100
-      p-3 rounded-md"
-    >
+    <div className="grid grid-cols-1 md:grid-cols-2 justify-between cursor-pointer hover:bg-gray-100 p-3 rounded-md">
       <div className="flex gap-2 items-center">
         <Image src={image} alt="file-icon" width={26} height={20} on />
         <h2
-          className="text-[15px] truncate"
+          className="text-[1rem] truncate"
           onClick={() => window.open(file.imageUrl)}
         >
           {file.name}
         </h2>
       </div>
       <div className="grid grid-cols-3 place-content-start">
-        <h2 className="text-[15px]">
+        <h2 className="text-[1rem]">
           {/* {moment(file.modifiedAt).format("MMMM DD, YYYY")} */}
           {/* {moment(file.modifiedAt).format('MMMM DD, YYYY')} */}
         </h2>
 
-        <h2 className="text-[15px]">
+        <h2 className="text-[1rem]">
           {/* {(file.size / 1024 ** 2).toFixed(2) + " MB"} */}
           {(file.size / 1024 ** 2).toFixed(2) + ' MB'}
           <svg
