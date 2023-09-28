@@ -1,6 +1,29 @@
-import React from 'react'
+'use client'
+
+import { app } from '@/Config/FirebaseConfig'
+import { doc, getFirestore, setDoc } from 'firebase/firestore'
+import { useSession } from 'next-auth/react'
+import Image from 'next/image'
+import React, { useState } from 'react'
 
 const CreateFolderModal = () => {
+  const [folderName, setFolderName] = useState()
+
+  const { data: session } = useSession()
+
+  const docId = Date.now().toString()
+
+  const db = getFirestore(app)
+
+  const onCreate = async () => {
+    console.log(folderName)
+    await setDoc(doc(db, 'Folders', docId), {
+      name: folderName,
+      id: docId,
+      createdBy: session.user?.email,
+    })
+  }
+
   return (
     <div>
       <div className="modal-box">
@@ -8,9 +31,24 @@ const CreateFolderModal = () => {
           <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
             ✕
           </button>
+
+          <div className="w-full items-center flex flex-col justify-center gap-3">
+            <Image src="/logo/folder.png" alt="folder" width={50} height={50} />
+            <input
+              onChange={(e) => setFolderName(e.target.value)}
+              type="text"
+              placeholder="Folder Name"
+              className="w-full rounded-md p-2 border-[.1rem] outline-none"
+            />
+          </div>
+
+          <button
+            onClick={() => onCreate()}
+            className="capitalize bg-blue-500 text-white rounded-md px-3 p-2 w-full"
+          >
+            create
+          </button>
         </form>
-        <h3 className="font-bold text-lg">Hello!</h3>
-        <p className="py-4">Press ESC key or click on ✕ button to close</p>
       </div>
     </div>
   )
