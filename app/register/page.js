@@ -7,7 +7,7 @@ import { authOptions } from '../api/auth/[...nextauth]/route'
 export default function Register() {
   const session = getServerSession(authOptions)
 
-  if (session) {
+  if (!session) {
     redirect('/dashboard')
   }
   return <RegisterForm />
