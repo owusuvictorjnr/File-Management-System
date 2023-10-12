@@ -30,6 +30,7 @@ const LoginForm = () => {
       }
 
       router.replace('dashboard')
+    
     } catch (error) {
       console.log(error)
     }
@@ -38,7 +39,7 @@ const LoginForm = () => {
   return (
     <div className="grid place-items-center h-screen">
       <div className="shadow-lg p-5 rounded-lg border-t-4 border-yellow-400">
-        <h1 className="text-l font-bold my-4 capitalize">sign in</h1>
+        <h1 className="text-lg font-bold my-4 capitalize">sign in</h1>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <input
