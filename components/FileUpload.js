@@ -9,11 +9,42 @@ import FileList from './File/FileList'
 import CreateFolderModal from './Folder/CreateFolderModal'
 import Toast from './Toast'
 import { ShowToastContext } from '@/context/ShowToastContext'
-// import { signOut } from 'next-auth/react'
-// import { useSession } from 'next-auth/react'
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from 'firebase/firestore'
+import { app } from '@/Config/FirebaseConfig'
+import { useSession } from 'next-auth/react'
+import { signOut } from 'next-auth/react'
+import Image from 'next/image'
 
 const FileUpload = () => {
   const [showToastMsg, setShowToastMsg] = useState()
+
+  const [folderList, setFolderList] = useState([])
+
+  const { data: session } = useSession()
+
+  const db = getFirestore(app)
+
+  const getFolderList = async () => {
+    setFolderList([])
+    const q = query(
+      collection(db, 'Folders'),
+      where('createBy', '==', session?.user?.email)
+    )
+
+    const querySnapshot = await getDocs(q)
+    querySnapshot.forEach((doc) => {
+      // console.log(doc.id, '=>', doc.data())
+      setFolderList((folderList) => [...folderList, doc.data()])
+    })
+  }
+
+  // console.log(typeof getFolderList)
 
   return (
     <main className="bg-blue-200/40">
@@ -25,13 +56,45 @@ const FileUpload = () => {
               <div className="p-5 ">
                 <SearchBar />
               </div>
+
+              {/* Middle Section */}
               <div className="">
-                <FolderList />
+                <FolderList folderList={folderList} />
+
+                {folderList.length}
+                {/* 
+                <div className="bg-teal-500 h-10 w-10">
+                  <Image
+                    src="/logo/folder.png"
+                    alt="folder"
+                    height={200}
+                    width={200}
+                  />
+                </div> */}
+
                 <FileList />
               </div>
             </div>
+
+            {/* Right Side Bar */}
             <div className="bg-white p-5 mx-5 mt-5 h-full lg:w-[25rem] md:w-[45rem] ">
-              storage
+              {/* storage */}
+
+              <div className="">
+                <div className="shadow-lg p-8 bg-zinc-300/10 flex flex-col gap-2 my-6">
+                  <div>
+                    Email:{' '}
+                    <span className="font-bold">{session?.user?.email}</span>
+                  </div>
+
+                  <button
+                    onClick={() => signOut()}
+                    className="bg-red-500 text-white rounded-md from-bold px-6 py-2 mt-3"
+                  >
+                    log out
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
           {/* <div className="">
@@ -49,57 +112,22 @@ export default FileUpload
 
 // const { data: session } = useSession()
 //   return (
-//     <div className="grid place-items-center h-screen">
-//       <div className="shadow-lg p-8 bg-zinc-300/10 flex flex-col gap-2 my-6">
-//         <div>
-//           Name: <span className="font-bold">{session?.user?.name}</span>
-//         </div>
-
-//         <div>
-//           Email: <span className="font-bold">{session?.user?.email}</span>
-//         </div>
-
-//         <button
-//           onClick={() => signOut()}
-//           className="bg-red-500 text-white from-bold px-6 py-2 mt-3"
-//         >
-//           log out
-//         </button>
-//       </div>
+// <div className="grid place-items-center h-screen">
+//   <div className="shadow-lg p-8 bg-zinc-300/10 flex flex-col gap-2 my-6">
+//     <div>
+//       Name: <span className="font-bold">{session?.user?.name}</span>
 //     </div>
+
+//     <div>
+//       Email: <span className="font-bold">{session?.user?.email}</span>
+//     </div>
+
+//     <button
+//       onClick={() => signOut()}
+//       className="bg-red-500 text-white from-bold px-6 py-2 mt-3"
+//     >
+//       log out
+//     </button>
+//   </div>
+// </div>
 //   )
-
-{
-  /* <div className="grid place-items-center h-screen ">
-<div className="">
-  <input
-    type="search"
-    placeholder="Search"
-    className="w-full rounded-full "
-  />
-</div>
-<div className="shadow-lg rounded-lg border-t-4 border-green-400 ">
-  <form className="flex flex-col gap-4">
-    <input type="file" />
-    <input type="text" placeholder="First Name" />
-
-    <input type="text" placeholder="Middle Name" />
-
-    <input type="text" placeholder="Last Name" />
-
-    <input type="text" placeholder="Semester" />
-
-    <input type="text" placeholder="Project Topic" />
-
-    <input type="text" placeholder="Supervisor" />
-
-    <button
-      type=""
-      className="bg-orange-500 rounded-lg py-2 px-5 text-white text-2lg capitalize duration-500 hover:bg-zinc-300/40 hover:text-red-500 font-bold  "
-    >
-      submit
-    </button>
-  </form>
-</div>
-</div> */
-}
