@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const FolderItem = ({ folder }) => {
@@ -11,7 +12,7 @@ const FolderItem = ({ folder }) => {
         height={1000}
         className="w-[5rem] h-[5rem]"
       />
-      <h2 className="line-clamp-2 text-sm md:text-2xl">{folder.name}</h2>
+      <h2 className="line-clamp-2 text-sm md:text-xl">{folder.name}</h2>
     </div>
   )
 }
