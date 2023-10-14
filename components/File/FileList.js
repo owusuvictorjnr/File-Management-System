@@ -26,7 +26,7 @@ function FileList() {
     {
       id: 4,
       name: 'React Principal.docx',
-      type: 'doc',
+      type: 'docx',
       size: '6272 kB',
       modifiedAt: 'Sept 23,2023',
     },
