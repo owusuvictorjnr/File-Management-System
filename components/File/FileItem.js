@@ -1,13 +1,16 @@
+import { app } from '@/Config/FirebaseConfig'
+import { ShowToastContext } from '@/context/ShowToastContext'
+import { deleteDoc, doc, getFirestore } from 'firebase/firestore'
 import Image from 'next/image'
 import { useContext } from 'react'
 
 function FileItem({ file }) {
-  // const db = getFirestore(app)
+  const db = getFirestore(app)
   const image = '/' + file.type + '.png'
-  // const { showToastMsg, setShowToastMsg } = useContext(ShowToastContext)
+  const { showToastMsg, setShowToastMsg } = useContext(ShowToastContext)
   const deleteFile = async (file) => {
     await deleteDoc(doc(db, 'files', file.id.toString())).then((resp) => {
-      setShowToastMsg('File Deleted!!!')
+      setShowToastMsg('File Deleted!')
     })
   }
 
@@ -24,12 +27,11 @@ function FileItem({ file }) {
       </div>
       <div className="grid grid-cols-3 place-content-start">
         <h2 className="text-[1rem]">
-          {/* {moment(file.modifiedAt).format("MMMM DD, YYYY")} */}
-          {/* {moment(file.modifiedAt).format('MMMM DD, YYYY')} */}
+          {/* {moment(file.modifiedAt).format('MMMM DD, YYYY')}
+          {moment(file.modifiedAt).format('MMMM DD, YYYY')} */}
         </h2>
 
         <h2 className="text-[1rem]">
-          {/* {(file.size / 1024 ** 2).toFixed(2) + " MB"} */}
           {(file.size / 1024 ** 2).toFixed(2) + ' MB'}
           <svg
             xmlns="http://www.w3.org/2000/svg"
