@@ -61,7 +61,7 @@ const FileUpload = () => {
               <div className="">
                 <FolderList folderList={folderList} />
 
-                {folderList.length}
+                {/* {folderList.length} */}
                 {/* 
                 <div className="bg-teal-500 h-10 w-10">
                   <Image
