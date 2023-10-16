@@ -1,6 +1,7 @@
 import './globals.css'
 import { Rubik } from 'next/font/google'
 import { AuthProvider } from './providers'
+import SideBarNav from '@/components/SideBarNav'
 
 const rubik = Rubik({ subsets: ['latin'] })
 
@@ -13,7 +14,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={rubik.className}>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          {/* <SideBarNav /> */}
+          {children}
+          </AuthProvider>
       </body>
     </html>
   )
