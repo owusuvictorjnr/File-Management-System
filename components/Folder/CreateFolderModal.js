@@ -10,7 +10,7 @@ import React, { useContext, useState } from 'react'
 const CreateFolderModal = () => {
   const [folderName, setFolderName] = useState()
 
-  const { showToastMsg, setShowToastMsg } = useContext(ShowToastContext)
+  // const { showToastMsg, setShowToastMsg } = useContext(ShowToastContext)
 
   const { data: session } = useSession()
 
