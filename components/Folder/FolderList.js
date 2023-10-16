@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+'use client'
+
+import React, { useContext, useState } from 'react'
 import FolderItem from './FolderItem'
 import { useRouter } from 'next/navigation'
-
-// import FolderItemSmall from './FolderItemSmall'
+import { ShowToastContext } from '@/context/ShowToastContext'
+import CreateDialogModal from './CreateDialogModal'
 
 function FolderList({}) {
-  const [activeFolder, setActiveFolder] = useState()
-  const router = useRouter()
+  // const [activeFolder, setActiveFolder] = useState()
+  // const router = useRouter()
 
   const folderList = [
     {
@@ -31,10 +33,13 @@ function FolderList({}) {
     },
   ]
 
-  const onFolderClick = (index) => {
-    setActiveFolder(index)
-    router.push('/department/name')
-  }
+  // const onFolderClick = (index) => {
+  //   setActiveFolder(index)
+  //   router.push('/department/name')
+  // }
+
+  const { showToastMsg, setShowToastMsg } = useContext(ShowToastContext)
+
   return (
     <div className="p-5 mt-5 bg-white rounded-lg">
       <h2 className="text-[2rem] font-bold items-center">
@@ -44,12 +49,22 @@ function FolderList({}) {
         </span> */}
       </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-3 gap-4">
+      {/* Folder Dialog Section */}
+      <div
+        onClick={() => document.getElementById('my_modal_4').showModal()}
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-3 gap-4"
+      >
         {folderList.map((item, index) => (
-          <div key={index} onClick={() => onFolderClick(item.id)}>
-            <FolderItem folder={item} activeFolder={activeFolder == index} />
+          <div key={index}>
+            <FolderItem folder={item} />
           </div>
         ))}
+      </div>
+
+      <div className="">
+        <dialog id="my_modal_4" className="modal">
+          <CreateDialogModal />
+        </dialog>
       </div>
     </div>
   )
