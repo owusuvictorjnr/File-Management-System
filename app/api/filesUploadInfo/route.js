@@ -28,3 +28,22 @@ export async function POST(req) {
     { status: 201 }
   )
 }
+
+export async function GET() {
+  await connectMongoDB()
+
+  const fileUploadInfo = await FileUploadInfo.find()
+
+  return NextResponse.json({ fileUploadInfo })
+}
+
+export async function DELETE(req) {
+  const id = req.nextUrl.searchParams.get('id')
+
+  await FileUploadInfo.findByIdAndDelete(id)
+
+  return NextResponse.json(
+    { message: 'File deleted successfully' },
+    { status: 200 }
+  )
+}
