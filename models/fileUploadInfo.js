@@ -2,12 +2,12 @@ import mongoose, { Schema, models } from 'mongoose'
 
 const fileUploadInfo = new Schema(
   {
-    project_tile: {
+    projecTitle: {
       type: String,
       required: true,
     },
 
-    student_name: {
+    studentName: {
       type: String,
       required: true,
     },
@@ -17,7 +17,12 @@ const fileUploadInfo = new Schema(
       required: true,
     },
 
-    index_number: {
+    indexNumber: {
+      type: String,
+      required: true,
+    },
+
+    deptHead: {
       type: String,
       required: true,
     },
@@ -26,25 +31,13 @@ const fileUploadInfo = new Schema(
       type: String,
       required: true,
     },
-
-    head_of_dept: {
-      type: String,
-      required: true,
-    },
-
-    calendar: {
-      type: String,
-      required: true,
-    },
-
-    file_type: {
-      type: String,
-      required: true,
-    },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 )
 
 const FileUploadInfo =
   models.FileUploadInfo || mongoose.model('FileUploadInfo', fileUploadInfo)
+
 export default FileUploadInfo
