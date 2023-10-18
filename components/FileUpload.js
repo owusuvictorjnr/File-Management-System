@@ -4,9 +4,6 @@ import React, { useState } from 'react'
 import SideBarNav from './SideBarNav'
 import SearchBar from './SearchBar'
 import FolderList from './Folder/FolderList'
-import FileItem from './File/FileItem'
-import FileList from './File/FileList'
-import CreateFolderModal from './Folder/CreateFolderModal'
 import Toast from './Toast'
 import { ShowToastContext } from '@/context/ShowToastContext'
 import {
@@ -19,7 +16,6 @@ import {
 import { app } from '@/Config/FirebaseConfig'
 import { useSession } from 'next-auth/react'
 import { signOut } from 'next-auth/react'
-import Image from 'next/image'
 
 const FileUpload = () => {
   const [showToastMsg, setShowToastMsg] = useState()
@@ -61,23 +57,12 @@ const FileUpload = () => {
               <div className="">
                 <FolderList folderList={folderList} />
 
-                {/* {folderList.length} */}
-                {/* 
-                <div className="bg-teal-500 h-10 w-10">
-                  <Image
-                    src="/logo/folder.png"
-                    alt="folder"
-                    height={200}
-                    width={200}
-                  />
-                </div> */}
-
-                <FileList />
+                {/* <FileList /> */}
               </div>
             </div>
 
             {/* Right Side Bar */}
-            <div className="bg-white p-5 mx-5 mt-5 h-full lg:w-[25rem] md:w-[45rem] ">
+            <div className=" p-5 mx-5 mt-5 md:h-0  lg:w-[25rem] md:w-[45rem] ">
               {/* storage */}
 
               <div className="">
