@@ -9,7 +9,7 @@ export async function PUT(req, { params }) {
 
   await connectMongoDB()
 
-  await FileUploadInfo.findByIdAndUpdate(id, { projecTitle, studentName })
+  await FileUploadInfo.findByIdAndUpdate(id, { projecTitle, studentName, file })
 
   return NextRequest.json({ message: 'File updated successfully' })
 }
