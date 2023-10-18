@@ -10,7 +10,6 @@ const UploadFile = () => {
   const [indexNumber, setIndexNumber] = useState('')
   const [deptHead, setDeptHead] = useState('')
   const [supervisor, setSupervisor] = useState('')
-  const [calendar, setCalendar] = useState('')
   const [file, setFile] = useState('')
 
   const router = useRouter()
@@ -25,7 +24,6 @@ const UploadFile = () => {
       !indexNumber ||
       !deptHead ||
       !supervisor ||
-      !calendar ||
       !file
     ) {
       alert('All fields are required')
@@ -45,6 +43,7 @@ const UploadFile = () => {
           indexNumber,
           deptHead,
           supervisor,
+          file,
         }),
       })
 
@@ -104,12 +103,6 @@ const UploadFile = () => {
           value={supervisor}
           type="text"
           placeholder="Supervisor"
-        />
-
-        <input
-          onChange={(e) => setCalendar(e.target.value)}
-          value={calendar}
-          type="date"
         />
 
         <input
