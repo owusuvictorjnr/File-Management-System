@@ -1,15 +1,11 @@
 'use client'
 
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import FolderItem from './FolderItem'
-import { useRouter } from 'next/navigation'
 import { ShowToastContext } from '@/context/ShowToastContext'
 import CreateDialogModal from './CreateDialogModal'
 
 function FolderList({}) {
-  // const [activeFolder, setActiveFolder] = useState()
-  // const router = useRouter()
-
   const folderList = [
     {
       id: 1,
@@ -32,11 +28,6 @@ function FolderList({}) {
       name: 'Oil & Gas',
     },
   ]
-
-  // const onFolderClick = (index) => {
-  //   setActiveFolder(index)
-  //   router.push('/department/name')
-  // }
 
   const { showToastMsg, setShowToastMsg } = useContext(ShowToastContext)
 
@@ -71,33 +62,3 @@ function FolderList({}) {
 }
 
 export default FolderList
-
-// import React, { useState } from 'react'
-// import FolderItem from './FolderItem'
-
-// function FolderList({ folderList }) {
-//   const [activeFolder, setActiveFolder] = useState()
-
-//   const onFolderClick = () =>(index, item) => {
-//     setActiveFolder(index)
-//   }
-
-//   return (
-//     <div className="p-5 mx-5 mt-5 bg-white rounded-lg">
-//       <h2 className="capitalize text-sm md:text-xl font-bold">
-//         recent folder{' '}
-//         <span className="float-right text-blue-400 font-normal">view all</span>
-//       </h2>
-//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-//         {folderList.map((item, index) => (
-//           <div key={index}>
-//             <div className="">
-//               <FolderItem folder={item} />
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   )
-// }
-// export default FolderList
