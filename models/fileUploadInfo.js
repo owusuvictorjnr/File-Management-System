@@ -32,11 +32,6 @@ const fileUploadInfo = new Schema(
       required: true,
     },
 
-    calendar: {
-      type: String,
-      required: true,
-    },
-
     file: {
       type: String,
       required: true,
