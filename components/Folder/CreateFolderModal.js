@@ -10,7 +10,7 @@ import React, { useContext, useState } from 'react'
 const CreateFolderModal = () => {
   const [folderName, setFolderName] = useState()
 
-  // const { showToastMsg, setShowToastMsg } = useContext(ShowToastContext)
+  const { showToastMsg, setShowToastMsg } = useContext(ShowToastContext)
 
   const { data: session } = useSession()
 
@@ -23,7 +23,7 @@ const CreateFolderModal = () => {
     await setDoc(doc(db, 'Folders', docId), {
       name: folderName,
       id: docId,
-      createdBy: session.user?.email,
+      createdBy: session?.user?.email,
     })
     setShowToastMsg('Folder Created')
   }
@@ -44,7 +44,7 @@ const CreateFolderModal = () => {
               className="w-full rounded-md p-2 border-[.1rem] outline-none"
             />
           </div>
-          
+
           <button
             onClick={() => onCreate()}
             className="capitalize bg-blue-500 mt-2 text-white rounded-md px-3 p-2 w-full"
