@@ -10,6 +10,8 @@ export async function POST(req) {
     indexNumber,
     deptHead,
     supervisor,
+    calendar,
+    file,
   } = await req.json()
 
   await connectMongoDB()
@@ -21,6 +23,8 @@ export async function POST(req) {
     indexNumber,
     deptHead,
     supervisor,
+    calendar,
+    file,
   })
 
   return NextResponse.json(
