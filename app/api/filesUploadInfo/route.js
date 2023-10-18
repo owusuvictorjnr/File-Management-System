@@ -10,7 +10,6 @@ export async function POST(req) {
     indexNumber,
     deptHead,
     supervisor,
-    calendar,
     file,
   } = await req.json()
 
@@ -23,7 +22,6 @@ export async function POST(req) {
     indexNumber,
     deptHead,
     supervisor,
-    calendar,
     file,
   })
 
