@@ -26,13 +26,11 @@ const EditDetails = async ({ params }) => {
 
   // console.log('id:', id)
   return (
-    <div>
-      <EditDetailsForm
-        id={id}
-        projecTitle={projecTitle}
-        studentName={studentName}
-      />
-    </div>
+    <EditDetailsForm
+      id={id}
+      projecTitle={projecTitle}
+      studentName={studentName}
+    />
   )
 }
 
