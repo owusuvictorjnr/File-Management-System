@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import FileUploadInfo from '@/models/fileUploadInfo'
 import RemoveBtn from '@/components/RemoveBtn'
-import SearchBar from '@/components/SearchBar'
+import SearchBar from '@/components/searchBar/SearchBar'
 // import { useRouter } from 'next/navigation'
 
 const getDetails = async () => {
