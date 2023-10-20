@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
-const EditDetailsForm = ({ projecTitle, studentName }) => {
+export default function EditDetailsForm({ id, projecTitle, studentName }) {
   const [newProjecTitle, setNewProjectTitle] = useState(projecTitle)
 
   const [newStudentName, setNewStudentName] = useState(studentName)
@@ -21,25 +21,21 @@ const EditDetailsForm = ({ projecTitle, studentName }) => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            newProjecTitle,
-            newStudentName,
-            // newFileName,
-          }),
+          body: JSON.stringify({ newProjecTitle, newStudentName }),
         }
       )
-
       if (!res.ok) {
-        throw new Error('Failed to update details')
+        throw new Error('Failed to update student details')
       }
-      router.refresh()
+
       router.push('/dashboard')
+      router.refresh()
     } catch (error) {
       console.log(error)
     }
   }
 
-  // console.log('id:', id)
+  console.log('id:', id)
   return (
     <div className="grid place-items-center h-screen">
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
@@ -56,12 +52,6 @@ const EditDetailsForm = ({ projecTitle, studentName }) => {
           placeholder="Student Name"
         />
 
-        {/* <input
-          onChange={(e) => setNewFile(e.target.value)}
-          value={newFile}
-          type="file"
-        /> */}
-
         <button
           text="submit"
           className="bg-green-600 hover:bg-zinc-200/40 hover:text-orange-600 duration-700 text-white capitalize font-bold px-6 py-2"
@@ -72,5 +62,3 @@ const EditDetailsForm = ({ projecTitle, studentName }) => {
     </div>
   )
 }
-
-export default EditDetailsForm
