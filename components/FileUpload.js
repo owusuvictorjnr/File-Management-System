@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import SideBarNav from './SideBarNav'
-import SearchBar from './SearchBar'
+import SearchBar from './searchBar/SearchBar'
 import FolderList from './Folder/FolderList'
 import Toast from './Toast'
 import { ShowToastContext } from '@/context/ShowToastContext'
